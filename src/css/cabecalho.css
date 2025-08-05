@@ -69,11 +69,11 @@
 }
 
 .botao-carrinho {
-   background-color: transparent;
-   border: 0;
-   padding: 0.75rem;
-   position: relative;
-   cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 0.75rem;
+    position: relative;
+    cursor: pointer;
 }
 
 .botao-carrinho span {
@@ -105,7 +105,7 @@
     }
 
     .menu-hamburguer {
-        display: none;
+        /* display: none; */
     }
 
     .cabecalho .menu-principal ul {
