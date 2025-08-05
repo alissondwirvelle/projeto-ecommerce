@@ -104,9 +104,9 @@
         flex-direction: row;
     }
 
-    .menu-hamburguer {
-        /* display: none; */
-    }
+    /* .menu-hamburguer {
+        display: none;
+    } */
 
     .cabecalho .menu-principal ul {
         gap: 1rem;
