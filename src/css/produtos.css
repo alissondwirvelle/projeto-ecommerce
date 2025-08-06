@@ -18,12 +18,15 @@ main .produtos ul {
 }
 
 main .produtos .produto {
-    background-color: var(--cor-neutra-clara);
+    background-color: var(--cor-cinza-escura);
     max-width: 368px;
     border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
- .produtos figure img {
+.produtos figure img {
     width: 100%;
     height: 334px;
     border-top-left-radius: 14px;
@@ -49,6 +52,8 @@ main .informacoes {
     flex-direction: column;
     gap: 0.5rem;
     padding: 0 1.5rem 1.5rem;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
 }
 
 main .informacoes span {
@@ -66,7 +71,7 @@ main .informacoes .preco {
     margin-top: 1rem;
     text-align: right;
 }
-  
+
 main .informacoes .adicionar-ao-carrinho {
     background-color: var(--cor-primaria);
     border: none;
@@ -76,6 +81,9 @@ main .informacoes .adicionar-ao-carrinho {
     cursor: pointer;
     margin-top: 0.5rem;
     transition: background-color 0.3s ease-in-out;
+
+    letter-spacing: 0.1rem;
+    font-size: 1.2rem;
 }
 
 main .informacoes .adicionar-ao-carrinho:hover {
@@ -83,7 +91,7 @@ main .informacoes .adicionar-ao-carrinho:hover {
 }
 
 @media(min-width: 769px) {
-    
+
     main .produtos .produto {
         min-width: 368px;
     }
