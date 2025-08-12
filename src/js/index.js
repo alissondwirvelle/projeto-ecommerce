@@ -1,46 +1,56 @@
 /*
-Objetivo 1 - quando clicar no botão de adicionar ao carrinho:
-    - atualizar o contador
-    - adicionar o produto no localStorage
-    - atualizar a tabela HTML do carrinho
+Objetivo 1 - Adicionar produtos ao carrinho de forma modular:
+    - Extrair dados do produto com função dedicada
+    - Atualizar o contador do carrinho
+    - Salvar/atualizar produto no localStorage
+    - Atualizar a tabela HTML do carrinho
 
-Objetivo 2 - remover produtos do carrinho:
-    - ouvir o botão de deletar
-    - remover do localStorage
-    - atualizar o DOM e o total
+Objetivo 2 - Remover produtos do carrinho:
+    - Ouvir o botão de deletar
+    - Remover do localStorage
+    - Atualizar o DOM e o total
 
-Objetivo 3 - atualizar valores do carrinho:
-    - adicionar evento de escuta no input tbody
-    - atualizar o valor total do produto
-    - atualizar o valor total do carrinho
+Objetivo 3 - Atualizar valores do carrinho:
+    - Adicionar evento de escuta no input de quantidade
+    - Atualizar o valor total do produto
+    - Atualizar o valor total do carrinho
+
+Melhorias:
+    - Código modularizado e reutilizável
+    - Redução de duplicidade na extração de dados do produto
+    - Lógica de incremento/adicionar produto mais clara
 */
+
+
+function extrairDadosProduto(elementoProduto) {
+    return {
+        id: elementoProduto.dataset.id,
+        nome: elementoProduto.querySelector(".nome")?.textContent || "",
+        imagem: elementoProduto.querySelector("img")?.getAttribute("src") || "",
+        preco: parseFloat(
+            elementoProduto.querySelector(".preco")?.textContent
+                .replace("R$ ", "")
+                .replace(".", "")
+                .replace(",", ".")
+        ) || 0,
+        quantidade: 1,
+    };
+}
 
 const botoesAdicionarAoCarrinho = document.querySelectorAll(".adicionar-ao-carrinho");
 
 botoesAdicionarAoCarrinho.forEach(botao => {
     botao.addEventListener("click", (evento) => {
         const elementoProduto = evento.target.closest(".produto");
-        const produtoId = elementoProduto.dataset.id;
-        const produtoNome = elementoProduto.querySelector(".nome").textContent;
-        const produtoImagem = elementoProduto.querySelector("img").getAttribute("src");
-        const produtoPreco = parseFloat(elementoProduto.querySelector(".preco").textContent.replace("R$ ", "").replace(".", "").replace(",", "."));
+        if (!elementoProduto) return;
+        const produto = extrairDadosProduto(elementoProduto);
 
-        //buscar a lista de produtos no localStorage
         const carrinho = obterProdutosDoCarrinho();
-        //testar se o produto já existe no carrinho
-        const existeProduto = carrinho.find(produto => produto.id === produtoId);
-        //se existe produto, incrementar a quantidade
+        const existeProduto = carrinho.find(p => p.id === produto.id);
+
         if (existeProduto) {
             existeProduto.quantidade += 1;
         } else {
-            //se não existe, adicionar o produto com a quantidade 1
-            const produto = {
-                id: produtoId,
-                nome: produtoNome,
-                imagem: produtoImagem,
-                preco: produtoPreco,
-                quantidade: 1,
-            };
             carrinho.push(produto);
         }
 
