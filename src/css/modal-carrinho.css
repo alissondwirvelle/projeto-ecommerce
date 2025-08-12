@@ -80,7 +80,7 @@ td.td-quantidade input {
     text-align: center;
 }
 
-td .btn-deletar {
+td .btn-remover {
     display: block;
     background-image: url(../imagens/icone_deletar.svg);
     width: 24px;
